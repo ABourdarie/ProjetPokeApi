@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjetPokeApi.Pages.HomePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+    <StackLayout BackgroundColor="#E2E4F9">
+        <!--<Image Source="icon.png"></Image>-->
+        <Label Text="PokéAPI - TP Bourdarie Dron"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+        <Button Text="Cliquer" Font="Verdana"></Button>
+    </StackLayout>
 </ContentPage>
