@@ -1,4 +1,5 @@
 ﻿
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,6 +11,14 @@ namespace ProjetPokeApi.Pages
         public HomePage()
         {
             InitializeComponent();
+        }
+   
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Hello World!");
+            label.Text = "Installation de linux en cours...";
+
         }
     }
 }
