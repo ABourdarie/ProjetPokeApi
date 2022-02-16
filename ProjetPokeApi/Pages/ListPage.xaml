@@ -4,7 +4,22 @@
              x:Class="ProjetPokeApi.Pages.ListPage">
     <ContentPage.Content>
         <StackLayout BackgroundColor="White">
-            <ListView x:Name="PokemonsList"/>
+            <ListView>
+                <ListView.Header>
+                    <Label Text="Nom" />
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Label Text="exemple" />
+                                <Label Text="exemple" />
+                                <Label Text="exemple" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
