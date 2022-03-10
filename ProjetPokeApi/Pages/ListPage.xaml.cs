@@ -1,9 +1,10 @@
 ﻿
-using Xamarin.Forms;
 using PokeApiNet;
-using System.Threading.Tasks;
+using ProjetPokeApi.ViewModel;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace ProjetPokeApi.Pages
 {
@@ -14,23 +15,18 @@ namespace ProjetPokeApi.Pages
         public ListPage()
         {
             InitializeComponent();
-           
+            BindingContext = ListViewModel.Instance;
         }
 
-        protected override async void OnAppearing()
+        void OnTapGestureRecognizerTapped(object sender, EventArgs args)
         {
-            base.OnAppearing();
-            PokeApiClient pokeClient = new PokeApiClient();
-
-           for (int i = 1; i < 21; i++)
-            {
-                Pokemon poke = await Task.Run(async () => await pokeClient.GetResourceAsync<Pokemon>(i));
-                Debug.WriteLine(poke.Name);
-            }
+            Pokemon param = (Pokemon)((TappedEventArgs)args).Parameter;
+            Debug.WriteLine(args);
+            Navigation.PushModalAsync(new ShowPage(param));
         }
- 
-            
-        
-    }
-    
+
+
+
+        } 
+
 }

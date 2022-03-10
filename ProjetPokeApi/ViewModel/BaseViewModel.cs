@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace ProjetPokeApi.ViewModel
 {
@@ -10,7 +8,7 @@ namespace ProjetPokeApi.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private Dictionary<string, object> properties = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> properties = new Dictionary<string, object>();
 
         protected void SetValue<T>(T value, [CallerMemberName] string propertyName = null)
         {
@@ -31,7 +29,7 @@ namespace ProjetPokeApi.ViewModel
         {
             if (!properties.ContainsKey(propertyName))
             {
-                return default(T);
+                return default;
             }
             else
             {
@@ -41,9 +39,7 @@ namespace ProjetPokeApi.ViewModel
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            var handler = PropertyChanged;
-            if (handler != null)
-                handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
