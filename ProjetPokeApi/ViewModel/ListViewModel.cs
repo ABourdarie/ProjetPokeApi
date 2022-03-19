@@ -32,11 +32,10 @@ namespace ProjetPokeApi.ViewModel
             InitList();
         }
 
-        public ShowPoke(object pokemon)
+        public void ShowPoke(object pokemon)
         {
             ListofPokemon = new ObservableCollection<MyPokemon>();
             InitPoke(pokemon);
-            
         }
 
         private async void InitList()
@@ -87,7 +86,7 @@ namespace ProjetPokeApi.ViewModel
                     Pokemon mypokemon = poke;  
 
                     if (pokemon == mypokemon) {
-                        ListofPokemon.Add(mypokemon);
+                        //ListofPokemon.Add(mypokemon);
                     }
                 }
 
