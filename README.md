@@ -5,7 +5,7 @@
 ## 1/ Ce qui ne marche pas
 
 La partie qui a été la plus frustante à été la correction de bug et le fait que notre application ne veut plus s'afficher a cause d'une modification inconnue. 
-Sur certains téléphones, l'application ne démmare plus. Je ne suis pas sûr que la sauvegarde en base soit totalement opérationnelle non plus. 
+Sur certains téléphones, l'application ne démarre plus. Je ne suis pas sûr que la sauvegarde en base soit totalement opérationnelle non plus. 
 
 ## 2/ Ce qui a été fait
 
