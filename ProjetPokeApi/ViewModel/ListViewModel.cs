@@ -1,98 +1,69 @@
-﻿using PokeApiNet;
-using ProjetPokeApi.Models;
+﻿
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Threading.Tasks;
-using Xamarin.Forms.Internals;
+using PokeApiNet;
+using ProjetPokeApi;
+using ProjetPokeApi.Models;
+using ProjetPokeApi.ViewModels;
 
-namespace ProjetPokeApi.ViewModel
+namespace ProjetPokeApi.ListViewModels
 {
-    internal class ListViewModel : BaseViewModel
+    public class ListViewModel : BaseViewModel
     {
-        public static ListViewModel _instance = new ListViewModel();
-        public static ListViewModel Instance => _instance;
-
-        internal object ShowPoke(Pokemon param)
+        public ObservableCollection<MyPokemon> PokemonsList
         {
-            throw new NotImplementedException();
+            get { return GetValue<ObservableCollection<MyPokemon>>(); }
+            set { SetValue(value); }
         }
 
-        public ObservableCollection<MyPokemon> ListofPokemon
+        public ObservableCollection<MyPokemon> TeamList
         {
-            get => GetValue<ObservableCollection<MyPokemon>>();
-            set
-            {
-                SetValue(value);
-            }
+            get { return GetValue<ObservableCollection<MyPokemon>>(); }
+            set { SetValue(value); }
         }
+        private static readonly ListViewModel _instance = new ListViewModel();
+        public static ListViewModel Instance { get { return _instance; } }
 
         public ListViewModel()
         {
-            ListofPokemon = new ObservableCollection<MyPokemon>();
-            InitList();
+            PokemonsList = new ObservableCollection<MyPokemon>();
+            LinkApi();
+            LinkData();
         }
 
-        public ShowPoke(object pokemon)
-        {
-            ListofPokemon = new ObservableCollection<MyPokemon>();
-            InitPoke(pokemon);
-            
-        }
-
-        private async void InitList()
+        async void LinkApi()
         {
             PokeApiClient pokeClient = new PokeApiClient();
 
-            for (int i = 1; i < 21; i++)
+            for (int i = 1; i <= 151; i++)
             {
-                Pokemon poke = await Task.Run(async () => await pokeClient.GetResourceAsync<Pokemon>(i));
+                Pokemon pokemon = await Task.Run(() => pokeClient.GetResourceAsync<Pokemon>(i));
 
-                MyPokemon mypokemon;
-
-                if (poke.Types.Count > 1)
+                MyPokemon myPokemon = new MyPokemon
                 {
-                    mypokemon = new MyPokemon
-                    {
-                        Id = poke.Id,
-                        Nom = poke.Name,
-                        Poids = poke.Weight,
-                        Type = poke.Types[0].Type.Name + " " + poke.Types[1].Type.Name
-                    };
-                }
-                else
-                {
-                    mypokemon = new MyPokemon
-                    {
-                        Id = poke.Id,
-                        Nom = poke.Name,
-                        Poids = poke.Weight,
-                        Type = poke.Types[0].Type.Name
+                    Id = pokemon.Id,
+                    Name = pokemon.Name,
+                    Image = pokemon.Sprites.FrontDefault,
+                    HP = pokemon.Stats[0].BaseStat,
+                    Attack = pokemon.Stats[1].BaseStat,
+                    Defense = pokemon.Stats[2].BaseStat,
+                    SpeAttack = pokemon.Stats[3].BaseStat,
+                    SpeDefense = pokemon.Stats[4].BaseStat,
+                    Speed = pokemon.Stats[5].BaseStat
+                };
 
-                    };
-                }
-                    
-                
+                PokemonsList.Add(myPokemon);
 
-                ListofPokemon.Add(mypokemon);
             }
-          
         }
-
-        private async void InitPoke(object pokemon)
+        async void LinkData()
         {
-            using (PokeApiClient pokeClient = new PokeApiClient())
-                for (int i = 1; i < 21; i++)
-                {
-                    Pokemon poke = await Task.Run(async () => await pokeClient.GetResourceAsync<Pokemon>(i));
-                    Pokemon mypokemon = poke;  
+            Database pokeDB = await Database.Instance;
 
-                    if (pokemon == mypokemon) {
-                        ListofPokemon.Add(mypokemon);
-                    }
-                }
-
+            PokemonsList = new ObservableCollection<MyPokemon>(await pokeDB.GetItemsAsync());
         }
-
-
     }
 }

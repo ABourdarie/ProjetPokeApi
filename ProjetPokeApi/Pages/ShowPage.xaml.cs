@@ -1,6 +1,12 @@
 ﻿
+using PokeApiNet;
+using ProjetPokeApi.Models;
 using System;
-using ProjetPokeApi.ViewModel;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,10 +16,11 @@ namespace ProjetPokeApi.Pages
     public partial class ShowPage : ContentPage
     {
 
-        public ShowPage(PokeApiNet.Pokemon param)
+        public ShowPage(MyPokemon pokemon)
         {
             InitializeComponent();
-            BindingContext = ListViewModel.Instance.ShowPoke(param);
+            BindingContext = pokemon;
         }
+
     }
 }

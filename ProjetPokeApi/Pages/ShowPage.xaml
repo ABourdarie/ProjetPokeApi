@@ -1,25 +1,65 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage
     x:Class="ProjetPokeApi.Pages.ShowPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:viewmodel="clr-namespace:ProjetPokeApi.ViewModel">
-
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="White">
-            <CollectionView ItemsSource="{Binding ListofPokemon}">
-                <CollectionView.Header>
-                    <Label Text="Nom" />
-                </CollectionView.Header>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout>
-                            <Label Text="{Binding Id}" />
-                        </StackLayout>
-
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+        <StackLayout>
+            <Label Text="{Binding Id}" />
+            <Label Text="{Binding Name}" />
+            <Image
+                HorizontalOptions="Start"
+                Source="{Binding Image}"
+                WidthRequest="500" />
+            <Label Text="Stats :" />
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Vie : " />
+                        <Span Text="{Binding HP}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Att : " />
+                        <Span Text="{Binding Attack}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Def : " />
+                        <Span Text="{Binding Defense}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Att spé : " />
+                        <Span Text="{Binding SpeAttack}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Déf spé : " />
+                        <Span Text="{Binding SpeDefense}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <Label>
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Vit : " />
+                        <Span Text="{Binding Speed}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

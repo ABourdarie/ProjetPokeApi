@@ -1,12 +1,74 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjetPokeApi.Pages.AddPage">
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    x:Class="ProjetPokeApi.Pages.AddPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="AddPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <Entry
+                    x:Name="Name"
+                    Placeholder="Nom"
+                    TextChanged="Checking" />
+                <Image x:Name="PokemonImage" />
+                <Button
+                    x:Name="BoutonAjoutImage"
+                    Clicked="AjoutImage"
+                    Text="Image" />
+                <Label x:Name="Label_HP">Vie: (1)</Label>
+                <Slider
+                    x:Name="HP"
+                    Maximum="300"
+                    MaximumTrackColor="Black"
+                    Minimum="1"
+                    MinimumTrackColor="Gray"
+                    ValueChanged="OnValueChanged" />
+                <Label x:Name="Label_Attack">Att : (1)</Label>
+                <Slider
+                    x:Name="Attack"
+                    Maximum="300"
+                    MaximumTrackColor="Black"
+                    Minimum="1"
+                    MinimumTrackColor="Gray"
+                    ValueChanged="OnValueChanged" />
+                <Label x:Name="Label_Defense">Déf : (1)</Label>
+                <Slider
+                    x:Name="Defense"
+                    Maximum="300"
+                    MaximumTrackColor="Black"
+                    Minimum="1"
+                    MinimumTrackColor="Gray"
+                    ValueChanged="OnValueChanged" />
+                <Label x:Name="Label_SpeAttack">Attaque Spé : (1)</Label>
+                <Slider
+                    x:Name="SpeAttack"
+                    Maximum="300"
+                    MaximumTrackColor="Black"
+                    Minimum="1"
+                    MinimumTrackColor="Gray"
+                    ValueChanged="OnValueChanged" />
+                <Label x:Name="Label_SpeDefense">Défense Spé : (1)</Label>
+                <Slider
+                    x:Name="SpeDefense"
+                    Maximum="300"
+                    MaximumTrackColor="Black"
+                    Minimum="1"
+                    MinimumTrackColor="Gray"
+                    ValueChanged="OnValueChanged" />
+                <Label x:Name="Label_Speed">Vit : (1)</Label>
+                <Slider
+                    x:Name="Speed"
+                    Maximum="300"
+                    MaximumTrackColor="Black"
+                    Minimum="1"
+                    MinimumTrackColor="Gray"
+                    ValueChanged="OnValueChanged" />
+                <Button
+                    x:Name="AddPokemon"
+                    Clicked="OnButtonClicked"
+                    IsEnabled="False" />
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

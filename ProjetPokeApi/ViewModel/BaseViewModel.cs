@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ProjetPokeApi.ViewModel
+namespace ProjetPokeApi.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {

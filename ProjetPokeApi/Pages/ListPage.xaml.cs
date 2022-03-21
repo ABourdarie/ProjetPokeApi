@@ -1,32 +1,30 @@
 ﻿
-using PokeApiNet;
-using ProjetPokeApi.ViewModel;
 using System;
-using System.Diagnostics;
-using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
 using Xamarin.Forms;
+using System.Linq;
 
 namespace ProjetPokeApi.Pages
 {
-
     public partial class ListPage : ContentPage
     {
-
         public ListPage()
         {
             InitializeComponent();
-            BindingContext = ListViewModel.Instance;
+            BindingContext = ListViewModels.ListViewModel.Instance;
         }
 
-        void OnTapGestureRecognizerTapped(object sender, EventArgs args)
+        async void OnCollectionViewSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Pokemon param = (Pokemon)((TappedEventArgs)args).Parameter;
-            Debug.WriteLine(args);
-            Navigation.PushModalAsync(new ShowPage(param));
+            ProjetPokeApi.Models.MyPokemon current = (e.CurrentSelection.FirstOrDefault() as ProjetPokeApi.Models.MyPokemon);
+            if (current == null)
+            {
+                return;
+            }
+            (sender as CollectionView).SelectedItem = null;
+            await Navigation.PushAsync(new ShowPage(current));
         }
-
-
-
-        } 
-
+    }
 }
